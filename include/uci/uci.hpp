@@ -1,5 +1,4 @@
-#ifndef UCI_HPP_
-#define UCI_HPP_
+#pragma once
 
 #include <cstddef>
 #include <functional>
@@ -360,5 +359,3 @@ public:
 		}
 	}
 };
-
-#endif
