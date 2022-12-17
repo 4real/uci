@@ -72,23 +72,23 @@ public:
 	std::function<void()> receive_quit;
 
 	// Engine to UI.
-	static void send_id(const std::string& name = "", const std::string& author = "")
+	inline void send_id(const std::string& name = "", const std::string& author = "")
 	{
 		std::cout << "id" << (!name.empty() ? " name " + name : "") << (!author.empty() ? " author " + author : "") << std::endl;
 	}
-	static void send_uci_ok()
+	inline void send_uci_ok()
 	{
 		std::cout << "uciok" << std::endl;
 	}
-	static void send_ready_ok()
+	inline void send_ready_ok()
 	{
 		std::cout << "readyok" << std::endl;
 	}
-	static void send_best_move(const std::string& move, const bool ponder = false)
+	inline void send_best_move(const std::string& move, const bool ponder = false)
 	{
 		std::cout << "bestmove" << (ponder ? " ponder" : "") << std::endl;
 	}
-	static void send_copy_protection(const state state)
+	inline void send_copy_protection(const state state)
 	{
 		std::string string = "copyprotection";
 		if (state == state::checking) string += " checking";
@@ -96,7 +96,7 @@ public:
 		else if (state == state::error) string += " error";
 		std::cout << string << std::endl;
 	}
-	static void send_registration(const state state)
+	inline void send_registration(const state state)
 	{
 		std::string string = "registration";
 		if (state == state::checking) string += " checking";
@@ -104,7 +104,7 @@ public:
 		else if (state == state::error) string += " error";
 		std::cout << string << std::endl;
 	}
-	static void send_information(const std::map<information, std::string>& parameters)
+	inline void send_information(const std::map<information, std::string>& parameters)
 	{
 		std::string string = "info";
 		for (auto& parameter : parameters)
@@ -144,90 +144,90 @@ public:
 		}
 		std::cout << string << std::endl;
 	}
-	static void send_option_check_box(const std::string& name, const bool initial = true)
+	inline void send_option_check_box(const std::string& name, const bool initial = true)
 	{
 		std::cout << "option name " << name << " type check default " << std::boolalpha << initial << std::endl;
 	}
-	static void send_option_spin_wheel(const std::string& name, const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
+	inline void send_option_spin_wheel(const std::string& name, const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
 	{
 		std::cout << "option name " << name << " type spin default " << initial << " min " << minimum << " max " << maximum << std::endl;
 	}
-	static void send_option_combo_box(const std::string& name, const std::string& initial, const std::vector<std::string>& values)
+	inline void send_option_combo_box(const std::string& name, const std::string& initial, const std::vector<std::string>& values)
 	{
 		auto string = "option name " + name + " type combo default " + initial;
 		for (auto& value : values)
 			string += " var " + value;
 		std::cout << string << std::endl;
 	}
-	static void send_option_button(const std::string& name)
+	inline void send_option_button(const std::string& name)
 	{
 		std::cout << "option name " << name << " type button" << std::endl;
 	}
-	static void send_option_string(const std::string& name, const std::string& initial)
+	inline void send_option_string(const std::string& name, const std::string& initial)
 	{
 		std::cout << "option name " << name << " type string default " << initial << std::endl;
 	}
 
 	// Base options.
-	static void send_option_hash(const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
+	inline void send_option_hash(const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
 	{
 		send_option_spin_wheel("Hash", initial, minimum, maximum);
 	}
-	static void send_option_nalimov_path(const std::string& initial)
+	inline void send_option_nalimov_path(const std::string& initial)
 	{
 		send_option_string("NalimovPath", initial);
 	}
-	static void send_option_nalimov_cache(const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
+	inline void send_option_nalimov_cache(const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
 	{
 		send_option_spin_wheel("NalimovCache", initial, minimum, maximum);
 	}
-	static void send_option_ponder(const bool initial = true)
+	inline void send_option_ponder(const bool initial = true)
 	{
 		send_option_check_box("Ponder", initial);
 	}
-	static void send_option_own_book(const bool initial = true)
+	inline void send_option_own_book(const bool initial = true)
 	{
 		send_option_check_box("OwnBook", initial);
 	}
-	static void send_option_multi_principle_variation(const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
+	inline void send_option_multi_principle_variation(const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
 	{
 		send_option_spin_wheel("MultiPV", initial, minimum, maximum);
 	}
-	static void send_option_uci_show_current_line(const bool initial = true)
+	inline void send_option_uci_show_current_line(const bool initial = true)
 	{
 		send_option_check_box("UCI_ShowCurrLine", initial);
 	}
-	static void send_option_uci_show_refutations(const bool initial = true)
+	inline void send_option_uci_show_refutations(const bool initial = true)
 	{
 		send_option_check_box("UCI_ShowRefutations", initial);
 	}
-	static void send_option_uci_limit_strength(const bool initial = true)
+	inline void send_option_uci_limit_strength(const bool initial = true)
 	{
 		send_option_check_box("UCI_LimitStrength", initial);
 	}
-	static void send_option_uci_elo(const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
+	inline void send_option_uci_elo(const std::size_t& initial, const std::size_t& minimum, const std::size_t& maximum)
 	{
 		send_option_spin_wheel("UCI_Elo", initial, minimum, maximum);
 	}
-	static void send_option_uci_analyse_mode(bool const initial = true)
+	inline void send_option_uci_analyse_mode(bool const initial = true)
 	{
 		send_option_check_box("UCI_AnalyseMode", initial);
 	}
-	static void send_option_uci_opponent(const std::string& initial)
+	inline void send_option_uci_opponent(const std::string& initial)
 	{
 		send_option_string("UCI_Opponent", initial);
 	}
-	static void send_option_uci_about(const std::string& initial)
+	inline void send_option_uci_about(const std::string& initial)
 	{
 		send_option_string("UCI_EngineAbout", initial);
 	}
-	static void send_option_uci_set_position_centipawns(const std::string& initial)
+	inline void send_option_uci_set_position_centipawns(const std::string& initial)
 	{
 		send_option_string("UCI_SetPositionValue", initial);
 	}
 
 	// Start console IO.
-	void launch()
+	inline void launch()
 	{
 		std::string line;
 		auto   running = true;
