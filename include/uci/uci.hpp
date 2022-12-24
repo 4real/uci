@@ -86,7 +86,7 @@ public:
 	}
 	inline void send_best_move(const std::string& move, const bool ponder = false)
 	{
-		std::cout << "bestmove" << (ponder ? " ponder" : "") << std::endl;
+		std::cout << "bestmove " << move << (ponder ? " ponder" : "") << std::endl;
 	}
 	inline void send_copy_protection(const state state)
 	{
